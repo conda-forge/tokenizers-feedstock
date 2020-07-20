@@ -1,5 +1,5 @@
 {% set name = "tokenizers" %}
-{% set version = "0.8.0" %}
+{% set version = "0.8.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,16 +7,16 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 703101ffc1cce87e39a8fa9754126a5c29590b03817a73727e3268474dc716e6
+  sha256: e228ec9dcdced445124419219477ac4b4c4b0dc57b95b196a9ef37097d382559
 
 build:
-  number: 1
+  number: 0
   script:
     - {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
-  skip: True  # [win]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -46,7 +46,7 @@ about:
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
-  summary: "Fast State-of-the-Art Tokenizers optimized for Research and Production"
+  summary: Fast State-of-the-Art Tokenizers optimized for Research and Production
 
 extra:
   recipe-maintainers:
