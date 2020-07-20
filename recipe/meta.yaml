@@ -10,7 +10,7 @@ source:
   sha256: 703101ffc1cce87e39a8fa9754126a5c29590b03817a73727e3268474dc716e6
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
   missing_dso_whitelist:
