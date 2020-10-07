@@ -27,7 +27,7 @@ requirements:
     - setuptools
   run:
     - python
-    - libgcc-ng  ==9.2.0                          # [linux]
+    - libgcc-ng                           # [linux]
 
 test:
   imports:
