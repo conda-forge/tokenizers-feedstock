@@ -8,23 +8,14 @@ jobs:
     vmImage: vs2017-win2016
   strategy:
     matrix:
-      win_64_python3.6.____cpythonrust_compilerrust:
-        CONFIG: win_64_python3.6.____cpythonrust_compilerrust
+      win_64_python3.6.____cpython:
+        CONFIG: win_64_python3.6.____cpython
         UPLOAD_PACKAGES: 'True'
-      win_64_python3.6.____cpythonrust_compilerrust-gnu:
-        CONFIG: win_64_python3.6.____cpythonrust_compilerrust-gnu
+      win_64_python3.7.____cpython:
+        CONFIG: win_64_python3.7.____cpython
         UPLOAD_PACKAGES: 'True'
-      win_64_python3.7.____cpythonrust_compilerrust:
-        CONFIG: win_64_python3.7.____cpythonrust_compilerrust
-        UPLOAD_PACKAGES: 'True'
-      win_64_python3.7.____cpythonrust_compilerrust-gnu:
-        CONFIG: win_64_python3.7.____cpythonrust_compilerrust-gnu
-        UPLOAD_PACKAGES: 'True'
-      win_64_python3.8.____cpythonrust_compilerrust:
-        CONFIG: win_64_python3.8.____cpythonrust_compilerrust
-        UPLOAD_PACKAGES: 'True'
-      win_64_python3.8.____cpythonrust_compilerrust-gnu:
-        CONFIG: win_64_python3.8.____cpythonrust_compilerrust-gnu
+      win_64_python3.8.____cpython:
+        CONFIG: win_64_python3.8.____cpython
         UPLOAD_PACKAGES: 'True'
     maxParallel: 4
   timeoutInMinutes: 360

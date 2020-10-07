@@ -11,8 +11,6 @@ pin_run_as_build:
 python:
 - 3.7.* *_cpython
 rust_compiler:
-- rust-gnu
-rust_compiler_version:
-- 1.40.0
+- rust
 target_platform:
 - win-64
