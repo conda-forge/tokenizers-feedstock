@@ -23,11 +23,11 @@ requirements:
   host:
     - python
     - pip
-    - setuptools-rust
+    - setuptools-rust ==0.10.6
     - setuptools
   run:
     - python
-    # - libgcc-ng ==9.2.0                        # [linux]
+    - libgcc-ng                       # [linux]
 
 test:
   imports:
