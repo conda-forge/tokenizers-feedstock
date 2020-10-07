@@ -23,7 +23,7 @@ requirements:
   host:
     - python
     - pip
-    - setuptools-rust ==0.10.6
+    - setuptools-rust
     - setuptools
   run:
     - python
