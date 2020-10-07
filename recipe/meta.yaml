@@ -16,7 +16,6 @@ build:
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
-  skip: true  # [win]
 
 requirements:
   build:
