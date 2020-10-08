@@ -19,7 +19,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('rust') }}
+    - rust
     - {{ compiler('c') }}
   host:
     - python
