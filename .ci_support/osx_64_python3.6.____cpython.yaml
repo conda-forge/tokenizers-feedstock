@@ -6,8 +6,6 @@ channel_targets:
 - conda-forge main
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -18,3 +16,5 @@ rust_compiler:
 - rust
 rust_compiler_version:
 - 1.29.0
+target_platform:
+- osx-64
