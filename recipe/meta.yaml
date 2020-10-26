@@ -1,5 +1,5 @@
 {% set name = "tokenizers" %}
-{% set version = "0.8.1" %}
+{% set version = "0.9.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e228ec9dcdced445124419219477ac4b4c4b0dc57b95b196a9ef37097d382559
+  sha256: bacaeb3621055aba9b5158a21dc8b5d80f65724ff47f414f9d06f1e087668d61
 
 build:
   number: 0
