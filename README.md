@@ -1,13 +1,15 @@
 About tokenizers
 ================
 
-Home: https://github.com/huggingface/tokenizers
+Home: https://pypi.org/project/tokenizers/
 
 Package license: Apache-2.0
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tokenizers-feedstock/blob/master/LICENSE.txt)
 
 Summary: Fast State-of-the-Art Tokenizers optimized for Research and Production
+
+Development: https://github.com/huggingface/tokenizers
 
 Current build status
 ====================
@@ -182,6 +184,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@anthchirp](https://github.com/anthchirp/)
 * [@ndmaxar](https://github.com/ndmaxar/)
 * [@oblute](https://github.com/oblute/)
 * [@rluria14](https://github.com/rluria14/)
