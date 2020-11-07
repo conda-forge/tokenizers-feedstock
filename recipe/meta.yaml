@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   script:
-    - {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
+    - {{ PYTHON }} -m pip install . -vv
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
@@ -40,13 +40,18 @@ test:
     - tokenizers.processors
     - tokenizers.trainers
     - tokenizers.implementations
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: https://github.com/huggingface/tokenizers
+  home: https://pypi.org/project/tokenizers/
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
   summary: Fast State-of-the-Art Tokenizers optimized for Research and Production
+  dev_url: https://github.com/huggingface/tokenizers
 
 extra:
   recipe-maintainers:
