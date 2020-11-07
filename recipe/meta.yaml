@@ -56,7 +56,8 @@ about:
 
 extra:
   recipe-maintainers:
+    - anthchirp
+    - ndmaxar
     - oblute
     - rluria14
-    - ndmaxar
     - setu4993
