@@ -1,5 +1,5 @@
 {% set name = "tokenizers" %}
-{% set version = "0.8.1" %}
+{% set version = "0.9.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,28 +7,27 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e228ec9dcdced445124419219477ac4b4c4b0dc57b95b196a9ef37097d382559
+  sha256: bacaeb3621055aba9b5158a21dc8b5d80f65724ff47f414f9d06f1e087668d61
 
 build:
   number: 0
-  script:
-    - {{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
-  skip: true  # [win]
+  script:
+    - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
+    - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
     - python
     - pip
-    - setuptools-rust
+    - setuptools-rust >=0.11.5
     - setuptools
   run:
     - python
-    - libgcc-ng                                                  # [linux]
 
 test:
   imports:
@@ -40,17 +39,23 @@ test:
     - tokenizers.processors
     - tokenizers.trainers
     - tokenizers.implementations
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
-  home: https://github.com/huggingface/tokenizers
+  home: https://pypi.org/project/tokenizers/
   license: Apache-2.0
   license_family: APACHE
   license_file: LICENSE
   summary: Fast State-of-the-Art Tokenizers optimized for Research and Production
+  dev_url: https://github.com/huggingface/tokenizers
 
 extra:
   recipe-maintainers:
+    - anthchirp
+    - ndmaxar
     - oblute
     - rluria14
-    - ndmaxar
     - setu4993

@@ -1,9 +1,15 @@
+cdt_name:
+- cos6
 channel_sources:
-- conda-forge/label/rust_dev,conda-forge,defaults
+- conda-forge,defaults
 channel_targets:
 - conda-forge main
+cxx_compiler:
+- gxx
+cxx_compiler_version:
+- '7'
 docker_image:
-- condaforge/linux-anvil-comp7
+- quay.io/condaforge/linux-anvil-comp7
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -12,5 +18,5 @@ python:
 - 3.7.* *_cpython
 rust_compiler:
 - rust
-rust_compiler_version:
-- 1.29.0
+target_platform:
+- linux-64
