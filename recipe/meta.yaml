@@ -1,5 +1,5 @@
 {% set name = "tokenizers" %}
-{% set version = "0.9.4" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3ea3038008f1f74c8a1e1e2e73728690eed2d7fa4db0a51bcea391e644672426
+  sha256: 13e9971af25b39e6f355835dc192bcc6b6091c045869af4a99838cbbd4c8cb6c
 
 build:
-  number: 1
+  number: 0
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
