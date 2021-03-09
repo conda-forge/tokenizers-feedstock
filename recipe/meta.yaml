@@ -15,7 +15,7 @@ build:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
   script:
-    - export PYO3_CROSS_LIB_DIR={{ PREFIX }}/lib # [arm64]
+    - export PYO3_CROSS_LIB_DIR={{ PREFIX }}/lib  # [arm64]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
