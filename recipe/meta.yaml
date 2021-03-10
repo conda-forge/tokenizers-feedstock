@@ -15,10 +15,14 @@ build:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
   script:
+    - export PYO3_CROSS_LIB_DIR={{ PREFIX }}/lib  # [arm64]
+    - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
