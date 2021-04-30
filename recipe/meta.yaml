@@ -10,7 +10,7 @@ source:
   sha256: 81c35b4bc9238c0b5d0af91a719e732a60ee0d87d8bf76615bfec8f3e3ba8f15
 
 build:
-  number: 0
+  number: 1
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
@@ -58,6 +58,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - mxr-conda
     - anthchirp
     - ndmaxar
     - oblute
