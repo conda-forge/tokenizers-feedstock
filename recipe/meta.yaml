@@ -43,6 +43,7 @@ test:
     - tokenizers.processors
     - tokenizers.trainers
     - tokenizers.implementations
+    - tokenizers.tools
   commands:
     - pip check
   requires:
