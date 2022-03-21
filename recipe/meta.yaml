@@ -23,6 +23,7 @@ build:
     - export OPENSSL_DIR=$PREFIX
     {% endif %}
     - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
+    - cd bindings/python
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -51,10 +52,23 @@ test:
     - tokenizers.processors
     - tokenizers.trainers
     - tokenizers.implementations
-  commands:
-    - pip check
   requires:
     - pip
+    - pytest
+    - datasets
+    - numpy *
+    - requests
+    - curl *
+  source_files:
+    - bindings/python/tests
+  commands:
+    - pip check
+    # upstream requires running the tests from this directory
+    - cd bindings/python
+    # adapted from https://github.com/huggingface/tokenizers/blob/master/bindings/python/Makefile
+    - mkdir data
+    - curl https://norvig.com/big.txt > data/big.txt
+    - pytest tests
 
 about:
   home: https://pypi.org/project/tokenizers/
