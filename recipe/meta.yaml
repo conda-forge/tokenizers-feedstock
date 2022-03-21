@@ -58,11 +58,15 @@ test:
     - datasets
     - numpy *
     - requests
+    - curl *
   source_files:
     - bindings/python/tests
   commands:
     - pip check
     - cd bindings/python
+    # adapted from https://github.com/huggingface/tokenizers/blob/master/bindings/python/Makefile
+    - mkdir data
+    - curl https://norvig.com/big.txt > data/big.txt
     - pytest tests
 
 about:
