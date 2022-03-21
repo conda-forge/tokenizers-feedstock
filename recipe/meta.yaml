@@ -62,7 +62,8 @@ test:
     - bindings/python/tests
   commands:
     - pip check
-    - pytest bindings/python/tests
+    - cd bindings/python
+    - pytest tests
 
 about:
   home: https://pypi.org/project/tokenizers/
