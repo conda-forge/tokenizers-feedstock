@@ -68,7 +68,10 @@ test:
     # adapted from https://github.com/huggingface/tokenizers/blob/master/bindings/python/Makefile
     - mkdir data
     - curl https://norvig.com/big.txt > data/big.txt
-    - pytest tests
+    {% set tests_to_skip = "_not_a_real_test" %}
+    # windows and expectation of forking -> not gonna happen
+    {% set tests_to_skip = tests_to_skip + " or with_parallelism" %}  # [win]
+    - pytest -v tests -k "not ({{ tests_to_skip }})"
 
 about:
   home: https://pypi.org/project/tokenizers/
