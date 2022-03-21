@@ -55,6 +55,9 @@ test:
   requires:
     - pip
     - pytest
+    - datasets
+    - numpy *
+    - requests
   source_files:
     - bindings/python/tests
   commands:
