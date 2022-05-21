@@ -289,6 +289,3 @@ Feedstock Maintainers
 * [@oblute](https://github.com/oblute/)
 * [@setu4993](https://github.com/setu4993/)
 
-
-<!-- dummy commit to enable rerendering -->
-
