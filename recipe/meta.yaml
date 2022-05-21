@@ -26,7 +26,6 @@ build:
     # https://github.com/sfackler/rust-openssl/blob/openssl-sys-v0.9.72/openssl/src/lib.rs#L55-L56
     - export OPENSSL_DIR=$PREFIX
     {% endif %}
-    - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
     - cd bindings/python
     - {{ PYTHON }} -m pip install . -vv
 
