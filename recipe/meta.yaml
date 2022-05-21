@@ -10,7 +10,7 @@ source:
   sha256: 070746f86efa6c873db341e55cf17bb5e7bdd5450330ca8eca542f5c3dab2c66
 
 build:
-  number: 0
+  number: 1
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
