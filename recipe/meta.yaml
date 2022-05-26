@@ -7,6 +7,10 @@ package:
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/python-v{{ version }}.tar.gz
   sha256: db60f1966607ef9992de8d72c47b3c7980af997cd4d2d873b597b869f9c117c7
+  patches:
+    # backport huggingface/tokenizers#956 (+ dependent commit)
+    - patches/0001-Fixing-the-documentation-for-ByteLevel-in-Python-982.patch
+    - patches/0002-Upgrade-pyo3-to-0.16-956.patch
 
 build:
   number: 2
