@@ -7,7 +7,7 @@ package:
 
 source:
   git_url: https://github.com/huggingface/tokenizers.git
-  git_rev: v0.13.0-rc1
+  git_rev: 1a7d0ae9e8071e9b5cbd07663043673e624c76b8
   git_depth: 1
 
 build:
