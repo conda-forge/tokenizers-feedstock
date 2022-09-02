@@ -1,16 +1,17 @@
 {% set name = "tokenizers" %}
-{% set version = "0.12.1" %}
+{% set version = "0.13.0-rc1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 070746f86efa6c873db341e55cf17bb5e7bdd5450330ca8eca542f5c3dab2c66
+  git_url: https://github.com/huggingface/tokenizers.git
+  git_rev: v0.13.0-rc1
+  git_depth: 1
 
 build:
-  number: 2
+  number: 0
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
@@ -26,13 +27,13 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
-    - python >=3.6
+    - python
     - pip
     - setuptools-rust >=0.11.5
     - setuptools
     - openssl    # [linux]
   run:
-    - python >=3.6
+    - python
 
 test:
   imports:
