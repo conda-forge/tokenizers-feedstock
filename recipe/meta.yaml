@@ -16,7 +16,7 @@ build:
     - /usr/lib64/libgcc_s.so.1  # [linux]
   script:
     - export PYO3_CROSS_LIB_DIR={{ PREFIX }}/lib  # [arm64]
-    - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
+    - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -not -name "_sysconfigdata__darwin_darwin.py" -delete  # [arm64]
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -26,13 +26,13 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
-    - python
+    - python >=3.6
     - pip
     - setuptools-rust >=0.11.5
     - setuptools
     - openssl    # [linux]
   run:
-    - python
+    - python >=3.6
 
 test:
   imports:
