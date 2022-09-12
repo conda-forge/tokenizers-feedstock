@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/python-v{{ version }}.tar.gz
   sha256: 41cff8c8c87ba6dfbd9eb1d89b006aabb9c9823ffd09e281d6ddfb9ae695bd1a
+  patches:
+    - patches/0001-don-t-fork-on-windows.patch  # [win]
 
 build:
   number: 1

@@ -1,0 +1,27 @@
+From 6104215e37af690aad6dd34157024a95c0c6e919 Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Mon, 12 Sep 2022 14:40:37 +0200
+Subject: [PATCH] don't fork on windows
+
+---
+ bindings/python/tests/utils.py | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/bindings/python/tests/utils.py b/bindings/python/tests/utils.py
+index b2b028d..02bfb5b 100644
+--- a/bindings/python/tests/utils.py
++++ b/bindings/python/tests/utils.py
+@@ -98,10 +98,6 @@ def doc_pipeline_bert_tokenizer(data_dir):
+     )
+ 
+ 
+-# On MacOS Python 3.8+ the default was modified to `spawn`, we need `fork` in tests.
+-mp.set_start_method("fork")
+-
+-
+ def multiprocessing_with_parallelism(tokenizer, enabled: bool):
+     """
+     This helper can be used to test that disabling parallelism avoids dead locks when the
+-- 
+2.38.1.windows.1
+
