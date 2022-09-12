@@ -11,6 +11,7 @@ source:
     # backport huggingface/tokenizers#956 (+ dependent commit)
     - patches/0001-Fixing-the-documentation-for-ByteLevel-in-Python-982.patch
     - patches/0002-Upgrade-pyo3-to-0.16-956.patch
+    - patches/0003-don-t-fork-on-windows.patch
 
 build:
   number: 2

@@ -1,7 +1,7 @@
-From 062cbd1214d3424d2652e3b6115a7df6ef3a2495 Mon Sep 17 00:00:00 2001
+From 97ccffc9240765d081085704750fa886e8bba27c Mon Sep 17 00:00:00 2001
 From: h-vetinari <h.vetinari@gmx.com>
 Date: Fri, 6 May 2022 00:48:40 +1100
-Subject: [PATCH 2/2] Upgrade pyo3 to 0.16 (#956)
+Subject: [PATCH 2/3] Upgrade pyo3 to 0.16 (#956)
 
 * Upgrade pyo3 to 0.15
 
@@ -3357,5 +3357,5 @@ index 8170ffc..9e0d424 100644
      pub inner: Regex,
      pub pattern: String,
 -- 
-2.35.3.windows.1
+2.37.0.windows.1
 
