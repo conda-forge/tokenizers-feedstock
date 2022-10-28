@@ -12,8 +12,6 @@ source:
 
 build:
   number: 2
-  # no support for openssl 3 yet
-  skip: true  # [openssl != "1.1.1"]
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
@@ -26,7 +24,6 @@ build:
     # https://github.com/sfackler/rust-openssl/blob/openssl-sys-v0.9.72/openssl/src/lib.rs#L55-L56
     - export OPENSSL_DIR=$PREFIX
     {% endif %}
-    - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
     - cd bindings/python
     - {{ PYTHON }} -m pip install . -vv
 
@@ -59,11 +56,13 @@ test:
   requires:
     - pip
     - pytest
-    - datasets
+    # transitive dependency arrow-cpp stuck on openssl 1.1.1 for the moment
+    - datasets  # [openssl == "1.1.1"]
     - numpy *
     - requests
     - curl *
-    # temp: fix until https://github.com/conda-forge/multiprocess-feedstock/pull/46 lands
+    # temp: fix until https://github.com/conda-forge/multiprocess-feedstock/pull/46
+    # percolates far enough so that the solver doesn't pull in an old version anymore
     - dill >=0.3.6
   source_files:
     - bindings/python/tests
@@ -77,7 +76,8 @@ test:
     {% set tests_to_skip = "_not_a_real_test" %}
     # windows and expectation of forking -> not gonna happen
     {% set tests_to_skip = tests_to_skip + " or with_parallelism" %}  # [win]
-    - pytest -v tests -k "not ({{ tests_to_skip }})"
+    # cannot run tests for openssl 3 for the moment (missing dependency, see above)
+    - pytest -v tests -k "not ({{ tests_to_skip }})"  # [openssl == "1.1.1"]
 
 about:
   home: https://pypi.org/project/tokenizers/
