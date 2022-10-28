@@ -1,28 +1,40 @@
-{% set name = "tokenizers" %}
 {% set version = "0.13.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: tokenizers
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 3333d1cee5c8f47c96362ea0abc1f81c77c9b92c6c3d11cbf1d01985f0d5cf1d
+  url: https://github.com/huggingface/tokenizers/archive/refs/tags/python-v{{ version }}.tar.gz
+  sha256: 41cff8c8c87ba6dfbd9eb1d89b006aabb9c9823ffd09e281d6ddfb9ae695bd1a
+  patches:
+    - patches/0001-don-t-fork-on-windows.patch  # [win]
 
 build:
-  number: 0
+  number: 1
+  # no support for openssl 3 yet
+  skip: true  # [openssl != "1.1.1"]
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
   script:
-    - export PYO3_CROSS_LIB_DIR={{ PREFIX }}/lib  # [arm64]
+    {% if build_platform != target_platform %}
+    - export PYO3_CROSS_INCLUDE_DIR=$PREFIX/include
+    - export PYO3_CROSS_LIB_DIR=$SP_DIR/../
+    - export PYO3_CROSS_PYTHON_VERSION=$PY_VER
+    # see below for what OPENSSL_DIR should be pointing to:
+    # https://github.com/sfackler/rust-openssl/blob/openssl-sys-v0.9.72/openssl/src/lib.rs#L55-L56
+    - export OPENSSL_DIR=$PREFIX
+    {% endif %}
     - find {{ PREFIX }}/lib/python3.* -name "_sysconfigdata_*.py" -type f -not -name "_sysconfigdata_arm64_*.py" -delete  # [arm64]
+    - cd bindings/python
     - {{ PYTHON }} -m pip install . -vv
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - openssl                                # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
   host:
@@ -44,10 +56,26 @@ test:
     - tokenizers.processors
     - tokenizers.trainers
     - tokenizers.implementations
-  commands:
-    - pip check
   requires:
     - pip
+    - pytest
+    - datasets
+    - numpy *
+    - requests
+    - curl *
+  source_files:
+    - bindings/python/tests
+  commands:
+    - pip check
+    # upstream requires running the tests from this directory
+    - cd bindings/python
+    # adapted from https://github.com/huggingface/tokenizers/blob/master/bindings/python/Makefile
+    - mkdir data
+    - curl https://norvig.com/big.txt > data/big.txt
+    {% set tests_to_skip = "_not_a_real_test" %}
+    # windows and expectation of forking -> not gonna happen
+    {% set tests_to_skip = tests_to_skip + " or with_parallelism" %}  # [win]
+    - pytest -v tests -k "not ({{ tests_to_skip }})"
 
 about:
   home: https://pypi.org/project/tokenizers/
@@ -63,3 +91,4 @@ extra:
     - ndmaxar
     - oblute
     - setu4993
+    - h-vetinari
