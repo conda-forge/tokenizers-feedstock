@@ -63,6 +63,8 @@ test:
     - numpy *
     - requests
     - curl *
+    # temp: fix until https://github.com/conda-forge/multiprocess-feedstock/pull/46 lands
+    - dill >=0.3.6
   source_files:
     - bindings/python/tests
   commands:
