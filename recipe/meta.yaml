@@ -56,8 +56,7 @@ test:
   requires:
     - pip
     - pytest
-    # transitive dependency arrow-cpp stuck on openssl 1.1.1 for the moment
-    - datasets  # [openssl == "1.1.1"]
+    - datasets
     - numpy *
     - requests
     - curl *
@@ -76,8 +75,7 @@ test:
     {% set tests_to_skip = "_not_a_real_test" %}
     # windows and expectation of forking -> not gonna happen
     {% set tests_to_skip = tests_to_skip + " or with_parallelism" %}  # [win]
-    # cannot run tests for openssl 3 for the moment (missing dependency, see above)
-    - pytest -v tests -k "not ({{ tests_to_skip }})"  # [openssl == "1.1.1"]
+    - pytest -v tests -k "not ({{ tests_to_skip }})"
 
 about:
   home: https://pypi.org/project/tokenizers/
