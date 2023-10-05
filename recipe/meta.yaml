@@ -1,12 +1,12 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.13.3" %}
+{% set version = "0.14.0" %}
 
 package:
   name: tokenizers
   version: {{ version }}
 
 source:
-  url: https://github.com/huggingface/tokenizers/archive/refs/tags/python-v{{ version }}.tar.gz
+  url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
   sha256: b373d8fd2d967313131bffeaa2cda5174561425345be46bbe79940bc2bddee93
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
