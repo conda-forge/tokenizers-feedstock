@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
   sha256: a06efa1f19dcc0e9bd0f4ffbf963cb0217af92a9694f68fe7eee5e1c6ddc4bde
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
