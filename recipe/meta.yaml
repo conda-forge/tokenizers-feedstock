@@ -1,13 +1,13 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.13.3" %}
+{% set version = "0.14.0" %}
 
 package:
   name: tokenizers
   version: {{ version }}
 
 source:
-  url: https://github.com/huggingface/tokenizers/archive/refs/tags/python-v{{ version }}.tar.gz
-  sha256: b373d8fd2d967313131bffeaa2cda5174561425345be46bbe79940bc2bddee93
+  url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 3b9d70a65b4b016ebe92d309e2ce3cf5ea17c1214459b3baf309bb6370dc5c11
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
 
@@ -35,11 +35,13 @@ requirements:
     - openssl                                # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
+    - maturin
   host:
     - python
     - pip
     - setuptools-rust >=0.11.5
     - setuptools
+    - maturin
     - openssl    # [linux]
   run:
     - python
@@ -58,6 +60,7 @@ test:
     - pip
     - pytest
     - datasets
+    - huggingface_hub < 0.17
     - numpy *
     - requests
     - curl *
