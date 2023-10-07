@@ -69,6 +69,7 @@ test:
   source_files:
     - bindings/python/tests
   commands:
+    - pip check
     # upstream requires running the tests from this directory
     - cd bindings/python
     # adapted from https://github.com/huggingface/tokenizers/blob/master/bindings/python/Makefile
