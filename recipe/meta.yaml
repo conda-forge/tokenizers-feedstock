@@ -60,6 +60,7 @@ test:
     - pip
     - pytest
     - datasets
+    - huggingface_hub < 0.17
     - numpy *
     - requests
     - curl *
