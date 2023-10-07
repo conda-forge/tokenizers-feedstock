@@ -42,6 +42,7 @@ requirements:
     - setuptools-rust >=0.11.5
     - setuptools
     - openssl    # [linux]
+    - maturin
   run:
     - python
 
