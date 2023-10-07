@@ -17,7 +17,7 @@ build:
   # missing_dso_whitelist:
   #   - /usr/lib/libresolv.9.dylib  # [osx]
   #   - /usr/lib64/libgcc_s.so.1  # [linux]
-  # script:
+  script:
   #   {% if build_platform != target_platform %}
   #   - export PYO3_CROSS_INCLUDE_DIR=$PREFIX/include
   #   - export PYO3_CROSS_LIB_DIR=$SP_DIR/../
