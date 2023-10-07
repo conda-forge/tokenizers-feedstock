@@ -42,6 +42,7 @@ requirements:
     - pip
     - setuptools-rust >=0.11.5
     - setuptools
+    - maturin
     - openssl    # [linux]
   run:
     - python
