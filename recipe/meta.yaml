@@ -36,6 +36,8 @@ requirements:
     - maturin >=1.0,<2.0                     # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ compiler('rust') }}
+    - libclang                            # [unix]
+    - clangdev                            # [unix]
   host:
     - python
     - pip
