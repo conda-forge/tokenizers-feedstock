@@ -59,7 +59,7 @@ test:
   requires:
     - pip
     - pytest
-    - datasets
+    - datasets >=2.16
     - numpy *
     - requests
     - curl *
