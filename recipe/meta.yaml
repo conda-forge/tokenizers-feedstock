@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.19.1" %}
+{% set version = "0.20.0" %}
 
 package:
   name: tokenizers
@@ -7,12 +7,17 @@ package:
 
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 53f5e644148c14cf2c429f8eb321cc7f75e3092973ca6b0ced5b516214a081bf
+  sha256: ea027dbebbca61b28e1a4512eb447e513af3004bd268bcf139b51a384c073cb5
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
 
 build:
   number: 0
+  # MacOS on ARM builds started failing with segmentation fault.
+  # Those builds are being skipped from v0.20.0 in August 2024
+  # because Python 3.8 is being dropped at the end of October 2024.
+  # https://github.com/conda-forge/polars-feedstock/issues/259
+  skip: True  # [osx and arm64 and py==38]
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
@@ -35,6 +40,7 @@ requirements:
     - openssl                                # [build_platform != target_platform]
     - maturin >=1.0,<2.0                     # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - {{ compiler('rust') }}
   host:
     - python
@@ -44,7 +50,6 @@ requirements:
   run:
     - python
     - huggingface_hub >=0.16.4,<1.0
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   imports:
