@@ -13,6 +13,11 @@ source:
 
 build:
   number: 0
+  # MacOS on ARM builds started failing with segmentation fault.
+  # Those builds are being skipped from v0.20.0 in August 2024
+  # because Python 3.8 is being dropped at the end of October 2024.
+  # https://github.com/conda-forge/polars-feedstock/issues/259
+  skip: True  # [osx and arm64 and py==38]
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
