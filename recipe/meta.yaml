@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.20.0" %}
+{% set version = "0.20.1" %}
 
 package:
   name: tokenizers
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: ea027dbebbca61b28e1a4512eb447e513af3004bd268bcf139b51a384c073cb5
+  sha256: 1ac66047e780dae3feb9c6f85dbb95e8861e99d86590969383f871589a3f1ef0
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
 
@@ -17,7 +17,7 @@ build:
   # Those builds are being skipped from v0.20.0 in August 2024
   # because Python 3.8 is being dropped at the end of October 2024.
   # https://github.com/conda-forge/polars-feedstock/issues/259
-  skip: True  # [osx and arm64 and py==38]
+  skip: true  # [osx and arm64 and py==38]
   missing_dso_whitelist:
     - /usr/lib/libresolv.9.dylib  # [osx]
     - /usr/lib64/libgcc_s.so.1  # [linux]
