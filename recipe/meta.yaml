@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.20.3" %}
+{% set version = "0.20.4" %}
 
 package:
   name: tokenizers
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 21e9a235c72e49cafb7ed29829650f6a49f0a951194e1f0168b3b2f547362569
+  sha256: c7dd77a63d95113add5f4c85a41f117cbf41d2cbc7f6609b72650e14c7f42f31
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
 
 build:
-  number: 1
+  number: 0
   # MacOS on ARM builds started failing with segmentation fault.
   # Those builds are being skipped from v0.20.0 in August 2024
   # because Python 3.8 is being dropped at the end of October 2024.
