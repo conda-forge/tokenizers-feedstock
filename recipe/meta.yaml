@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.21.4" %}
+{% set version = "0.22.0" %}
 
 package:
   name: tokenizers
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 980f141601d9b6cc2d988657fd87e93c9d8599e3da7b4f5f77e3390a140edba3
+  sha256: 1e1855049980bf6df8575a57d0ed06fa35b35d3913451e02c3723aa7d76d5301
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
 
@@ -64,6 +64,7 @@ test:
   requires:
     - pip
     - pytest
+    - pytest-asyncio
     - datasets >=2.16
     - numpy *
     - requests
