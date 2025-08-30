@@ -64,6 +64,7 @@ test:
   requires:
     - pip
     - pytest
+    - pytest-asyncio
     - datasets >=2.16
     - numpy *
     - requests
