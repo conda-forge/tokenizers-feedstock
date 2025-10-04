@@ -65,7 +65,7 @@ test:
     - pip
     - pytest
     - pytest-asyncio
-    - datasets
+    - datasets >= 4.0.0
     - numpy *
     - requests
     - curl *
