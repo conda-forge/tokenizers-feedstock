@@ -35,7 +35,7 @@ build:
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
+    - python ${{ python_min }}               # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - openssl                                # [build_platform != target_platform]
     - maturin >=1.0,<2.0                     # [build_platform != target_platform]
@@ -43,12 +43,12 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('rust') }}
   host:
-    - python
+    - python ${{ python_min }}.*
     - pip
     - maturin >=1.0,<2.0
     - openssl    # [linux]
   run:
-    - python
+    - python ${{ python_min }}
     - huggingface_hub >=0.16.4,<2.0
 
 test:
