@@ -69,9 +69,6 @@ test:
     - numpy *
     - requests
     - curl *
-    # temp: fix until https://github.com/conda-forge/multiprocess-feedstock/pull/46
-    # percolates far enough so that the solver doesn't pull in an old version anymore
-    - dill >=0.3.6
   source_files:
     - bindings/python/tests
   commands:
