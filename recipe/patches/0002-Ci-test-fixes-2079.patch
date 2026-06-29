@@ -1,0 +1,80 @@
+From f499531f83d1c004e86e92a1dd63bc320186b59e Mon Sep 17 00:00:00 2001
+From: Sebastian Pop <spop@nvidia.com>
+Date: Tue, 2 Jun 2026 13:34:44 -0500
+Subject: [PATCH] Ci test fixes (#2079)
+
+* tests/python: use canonical Salesforce/wikitext dataset id
+
+The bare dataset id "wikitext" has been relocated on the Hugging
+Face Hub.  Newer huggingface_hub versions enforce the namespace/name
+form and reject the bare id, so the @pytest.mark.network test
+`test_tutorial_train_from_iterators::TestTrainFromIterators::test_datasets`
+fails on every PR with:
+
+  HfUriError: Invalid HF URI 'hf://datasets/wikitext@/.huggingface.yaml'.
+  Repository id must be 'namespace/name'.
+
+Update both `datasets.load_dataset(...)` call sites in this test to
+use the canonical relocated id `Salesforce/wikitext`.  The config
+name `wikitext-103-raw-v1` and split arguments are unchanged.
+
+* tests/node: update bertProcessing error message to match napi-rs
+
+The napi-rs runtime now reports "Failed to get Array length" when an
+expected `Array` argument is not an array, where it previously
+reported "Given napi value is not an array".  The
+`bindings/node/lib/bindings/post-processors.test.ts` test asserted
+the older string, so it fails on every PR.
+
+Update the expected error string to match the current napi-rs
+behaviour.  The test still verifies that `bertProcessing(['sep', 1])`
+(missing the second argument) throws; only the message text changes.
+
+* style: ruff format test_tutorial_train_from_iterators.py
+
+---------
+
+Co-authored-by: Arthur <arthur.zucker@gmail.com>
+---
+ bindings/node/lib/bindings/post-processors.test.ts            | 2 +-
+ .../tests/documentation/test_tutorial_train_from_iterators.py | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/bindings/node/lib/bindings/post-processors.test.ts b/bindings/node/lib/bindings/post-processors.test.ts
+index c32f0a74..221a3b54 100644
+--- a/bindings/node/lib/bindings/post-processors.test.ts
++++ b/bindings/node/lib/bindings/post-processors.test.ts
+@@ -9,7 +9,7 @@ describe('bertProcessing', () => {
+   })
+ 
+   it('throws if only one argument is provided', () => {
+-    expect(() => (bertProcessing as any)(['sep', 1])).toThrow('Given napi value is not an array')
++    expect(() => (bertProcessing as any)(['sep', 1])).toThrow('Failed to get Array length')
+   })
+ 
+   it('throws if arguments are malformed', () => {
+diff --git a/bindings/python/tests/documentation/test_tutorial_train_from_iterators.py b/bindings/python/tests/documentation/test_tutorial_train_from_iterators.py
+index 0e41fe99..d6868b00 100644
+--- a/bindings/python/tests/documentation/test_tutorial_train_from_iterators.py
++++ b/bindings/python/tests/documentation/test_tutorial_train_from_iterators.py
+@@ -34,7 +34,7 @@ class TestTrainFromIterators:
+         # START load_dataset
+         import datasets  # type: ignore[import-not-found]
+ 
+-        dataset = datasets.load_dataset("wikitext", "wikitext-103-raw-v1", split="train+test+validation")
++        dataset = datasets.load_dataset("Salesforce/wikitext", "wikitext-103-raw-v1", split="train+test+validation")
+         # END load_dataset
+ 
+     @pytest.fixture(scope="class")
+@@ -68,7 +68,7 @@ class TestTrainFromIterators:
+ 
+         # In order to keep tests fast, we only use the first 100 examples
+         os.environ["TOKENIZERS_PARALLELISM"] = "true"
+-        dataset = datasets.load_dataset("wikitext", "wikitext-103-raw-v1", split="train[0:100]")
++        dataset = datasets.load_dataset("Salesforce/wikitext", "wikitext-103-raw-v1", split="train[0:100]")
+ 
+         # START def_batch_iterator
+         def batch_iterator(batch_size=1000):
+-- 
+2.34.1
+
