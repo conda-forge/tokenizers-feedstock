@@ -1,5 +1,5 @@
 {% set tests_to_skip = "_not_a_real_test" %}
-{% set version = "0.23.1" %}
+{% set version = "0.23.2" %}
 
 package:
   name: tokenizers
@@ -7,12 +7,9 @@ package:
 
 source:
   url: https://github.com/huggingface/tokenizers/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: aa906ad27ece40261e075e171e4a8873c2c5cfdbb64205170735d425f214c7ef 
+  sha256: 6f900d6be35eb71921339483937946a4f42167dec9c0102e51055874fb239b8b
   patches:
     - patches/0001-don-t-fork-on-windows.patch  # [win]
-    # Fix tests that are failing in the 0.23.1 release.
-    # ref: https://github.com/huggingface/tokenizers/pull/2079
-    - patches/0002-Ci-test-fixes-2079.patch
 
 build:
   number: 0
